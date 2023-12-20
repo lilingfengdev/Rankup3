@@ -14,5 +14,21 @@ jobs:
         with:
           java-version: 11
           distribution: 'adopt'
-      - name: Gradle Test
-        run: ./gradlew test --no-daemon
+  
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: Upload jar
+        uses: marvinpinto/action-automatic-releases@master
+        with:
+          title: "rankup"
+          automatic_release_tag: "rankup"
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          files: "build/libs/*.jar"
+          prerelease: true
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: rankup Artifact
+          path: build/libs/*.jar
