@@ -1,5 +1,6 @@
 package sh.okx.rankup;
 
+
 import com.electronwill.nightconfig.toml.TomlFormat;
 import lombok.Getter;
 import org.bukkit.Bukkit;
